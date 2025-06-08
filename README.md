@@ -7,7 +7,6 @@ TypeScript 環境で Sequelize を使って MySQL に接続し、簡単なモデ
 Node.js のプロジェクトを初期化します。
 
 ```sh
-# package.json をデフォルトで生成
 npm init -y
 ```
 
@@ -20,7 +19,6 @@ npm i -D typescript @types/node ts-node-dev
 TypeScript プロジェクトの初期設定ファイル (`tsconfig.json`) を作成します。
 
 ```sh
-# tsconfig.json を作成
 npx tsc --init
 ```
 
