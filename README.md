@@ -209,3 +209,41 @@ docker compose exec backend /bin/bash
 ```sh
 npm run dev
 ```
+
+DBに接続して確認するには `default-mysql-client` を使用します。
+
+```sh
+apt-get update
+apt-get install -y default-mysql-client
+mysql -h db -u test -ppassword test_database
+```
+
+```sh
+MySQL [test_database]> show tables;
++-------------------------+
+| Tables_in_test_database |
++-------------------------+
+| Users                   |
++-------------------------+
+1 row in set (0.001 sec)
+
+MySQL [test_database]> describe Users;
++-----------+--------------+------+-----+---------+----------------+
+| Field     | Type         | Null | Key | Default | Extra          |
++-----------+--------------+------+-----+---------+----------------+
+| id        | int          | NO   | PRI | NULL    | auto_increment |
+| username  | varchar(255) | YES  |     | NULL    |                |
+| birthday  | datetime     | YES  |     | NULL    |                |
+| createdAt | datetime     | NO   |     | NULL    |                |
+| updatedAt | datetime     | NO   |     | NULL    |                |
++-----------+--------------+------+-----+---------+----------------+
+5 rows in set (0.002 sec)
+
+MySQL [test_database]> select * from Users;
++----+-----------+---------------------+---------------------+---------------------+
+| id | username  | birthday            | createdAt           | updatedAt           |
++----+-----------+---------------------+---------------------+---------------------+
+|  1 | sequelize | 1980-07-20 00:00:00 | 2025-06-08 07:21:02 | 2025-06-08 07:21:02 |
++----+-----------+---------------------+---------------------+---------------------+
+1 row in set (0.001 sec)
+```
