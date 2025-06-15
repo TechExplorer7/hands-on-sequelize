@@ -1,0 +1,35 @@
+services:
+  backend:
+    container_name: backend
+    image: node:22
+    working_dir: /app
+    tty: true
+    depends_on:
+      - db
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+    networks:
+      - backend
+
+  db:
+    container_name: db
+    image: mysql:8
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_HOST=${MYSQL_HOST}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+    volumes:
+      - ./db/conf.d:/etc/mysql/conf.d
+      - ./db/data:/var/lib/mysql
+    networks:
+      - backend
+
+networks:
+  backend:
