@@ -1,4 +1,5 @@
-import { initDb, initModels } from './db'
+import { initDb } from './database/sequelize'
+import { initModels } from './models'
 import { User } from './models/User'
 import { BaseRepository } from './repositories/BaseRepository'
 
